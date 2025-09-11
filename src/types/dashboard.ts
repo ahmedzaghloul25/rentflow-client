@@ -1,4 +1,3 @@
-import { Client } from "./client";
 import { Contract } from "./contract";
 import { Payment } from "./payment";
 import { Property } from "./property";
@@ -6,7 +5,8 @@ import { Property } from "./property";
 // --- API Response Types ---
 
 // Represents an item from the GET /dashboard/summary 'contracts' array
-export interface PropertySummaryItem extends Contract {}
+// export interface PropertySummaryItem extends Contract {
+// }
 
 // Represents an item from the GET /dashboard/summary 'duePayments' array
 export interface DuePaymentInfo {
@@ -16,7 +16,7 @@ export interface DuePaymentInfo {
 
 // The complete shape of the GET /dashboard/summary response
 export interface PropertySummaryResponse {
-  contracts: PropertySummaryItem[];
+  contracts: Contract[];
   duePayments: DuePaymentInfo[];
 }
 

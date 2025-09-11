@@ -3,7 +3,7 @@ import { NewContractData } from '@/src/types/contract';
 
 // Fetches all contracts for the list view
 export const getContracts = async ({ page, limit, is_terminated }: { page: number, limit: number, is_terminated?: boolean }) => {
-    const params: any = {
+    const params: { page: number, limit: number, is_terminated?: boolean } = {
         page: page + 1, // API is 1-indexed
         limit,
     };

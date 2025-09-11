@@ -24,3 +24,10 @@ export interface MarkPaymentPaidData {
     payment_method: PaymentMethodEnum;
     payment_date: Date;
 }
+
+export interface GetContractPayments {
+  is_paid?:boolean
+  is_cancelled?: boolean
+  page?:number
+  limit?:number
+}
