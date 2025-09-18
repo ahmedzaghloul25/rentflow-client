@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('auth_token');
 
   const { pathname } = request.nextUrl;
-  const loginUrl = new URL('/auth/login', request.url);
+  const loginUrl = new URL('/auth', request.url);
   const dashboardUrl = new URL('/dashboard', request.url);
 
   // 2. If the user is trying to access the dashboard without a token,
@@ -16,13 +16,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // 3. If the user is logged in and tries to access the login page,
-  //    redirect them to the dashboard.
-  if (token && pathname.startsWith('/auth/login')) {
-    return NextResponse.redirect(dashboardUrl);
-  }
-
-  if (token && pathname.startsWith('/auth/register')) {
+  if (token && pathname.startsWith('/auth')) {
     return NextResponse.redirect(dashboardUrl)
   }
 
@@ -32,5 +26,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth/login', '/auth/register'],
+  matcher: ['/dashboard/:path*', '/auth'],
 };

@@ -9,11 +9,11 @@ import GoogleIcon from "@mui/icons-material/Google"; // Using MUI icon for now
 import logo from "@/public/logo.png";
 import Image from "next/image";
 
-export default function RegisterPage() {
-  const handleGoogleSignup = () => {
+export default function LoginPage() {
+  const handleGoogleLogin = () => {
     // Redirect to the backend's Google auth endpoint
-    const googleRegisterUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`;
-    window.location.href = googleRegisterUrl;
+    const googleLoginUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;    
+    window.location.href = googleLoginUrl;
   };
 
   return (
@@ -33,21 +33,21 @@ export default function RegisterPage() {
             Welcome
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 4 }}>
-            Sign up to manage your properties.
+            Sign in to manage your properties.
           </Typography>
           <Button
             variant="contained"
             size="large"
             fullWidth
             startIcon={<GoogleIcon />}
-            onClick={handleGoogleSignup}
+            onClick={handleGoogleLogin}
             sx={{
               backgroundColor: "#fff",
               color: "#424242",
               "&:hover": { backgroundColor: "#f5f5f5" },
             }}
           >
-            Sign up
+            Continue with Google
           </Button>
         </CardContent>
       </Card>

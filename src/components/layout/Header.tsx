@@ -13,10 +13,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
+import {Divider} from '@mui/material'
 import { useThemeContext } from "@/src/context/ThemeContext";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { setCsrfToken } from "@/src/lib/api";
 
 export function Header() {
   const { mode, toggleColorMode } = useThemeContext();
@@ -30,9 +30,6 @@ export function Header() {
     queryKey: ["userProfile"],
     queryFn: async () => {
       const data = await getProfile();
-      if (data.csrfToken) {
-        setCsrfToken(data.csrfToken);
-      }      
       return data.user;
     },
     // staleTime: 15 * 60 * 1000,
@@ -42,7 +39,7 @@ export function Header() {
     mutationFn: logout,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userProfile"] });
-      window.location.href = "/auth/login";
+      window.location.href = "/auth";
     },
   });
 
@@ -95,6 +92,10 @@ export function Header() {
                 <MenuItem disabled>
                   <Typography variant="body1">{user.fullName}</Typography>
                 </MenuItem>
+                <MenuItem disabled>
+                  <Typography variant="body1">{user.email}</Typography>
+                </MenuItem>
+                <Divider/>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>

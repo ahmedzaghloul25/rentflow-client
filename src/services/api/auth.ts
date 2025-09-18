@@ -1,7 +1,7 @@
 import api from '@/src/lib/api';
 import { User } from '@/src/types/auth'; // We'll create this type next
 
-export const getProfile = async (): Promise<{user:User, csrfToken: string}> => {
+export const getProfile = async (): Promise<{user:User}> => {
   const { data } = await api.get('/auth/profile');
   return data;
 };
