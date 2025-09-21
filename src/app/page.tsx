@@ -40,7 +40,7 @@ export default function LandingPage() {
               </Box>
               <Button
                 component={Link}
-                href="/auth"
+                href="/auth/google"
                 variant="contained"
                 sx={{
                   display: { xs: 'none', sm: 'inline-flex' },
@@ -98,7 +98,7 @@ export default function LandingPage() {
               </Typography>
               <Button
                 component={Link}
-                href="/auth"
+                href="/auth/google"
                 variant="contained"
                 size="large"
                 sx={{
@@ -184,7 +184,7 @@ export default function LandingPage() {
               </Typography>
               <Button
                 component={Link}
-                href="/auth"
+                href="/auth/google"
                 variant="contained"
                 size="large"
                 sx={{
