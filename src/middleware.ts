@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('auth_token');
 
   const { pathname } = request.nextUrl;
-  const loginUrl = new URL('/auth', request.url);
+  const loginUrl = new URL('/auth/google', request.url);
   const dashboardUrl = new URL('/dashboard', request.url);
 
   // 2. If the user is trying to access the dashboard without a token,
