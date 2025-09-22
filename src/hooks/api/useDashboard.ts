@@ -8,6 +8,7 @@ export const usePropertySummary = () => {
   return useQuery({
     queryKey: ['dashboardPropertySummary'],
     queryFn: getPropertySummary,
+    retry: false
   });
 };
 
@@ -18,5 +19,6 @@ export const useFinancialSummary = () => {
   return useQuery({
     queryKey: ['dashboardFinancialSummary'],
     queryFn: getFinancialSummary,
+    retry: false
   });
 };

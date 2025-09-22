@@ -2,6 +2,7 @@
 import Box from "@mui/material/Box";
 import { Sidebar } from "@/src/components/layout/Sidebar";
 import { Header } from "@/src/components/layout/Header";
+import { AuthCheck } from "@/src/components/common/AuthCheck";
 // We will create the Header component next
 
 export default function DashboardLayout({
@@ -10,6 +11,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
+    <AuthCheck>
     <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box
@@ -26,5 +28,7 @@ export default function DashboardLayout({
         {children}
       </Box>
     </Box>
+    </AuthCheck>
+
   );
 }

@@ -17,7 +17,7 @@ import { Divider } from "@mui/material";
 import { useThemeContext } from "@/src/context/ThemeContext";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { setCsrfToken } from "@/src/lib/api";
+import { removeToken } from "@/src/lib/token";
 
 export function Header() {
   const { mode, toggleColorMode } = useThemeContext();
@@ -32,21 +32,18 @@ export function Header() {
     queryFn: async () => {
       const data = await getProfile();
       console.log('data is ', data);
-      
-      if (data.csrfToken) {
-        setCsrfToken(data.csrfToken);
-      }
       return data.user;
     },
-    retry: true
+    retry: false,
     // staleTime: 15 * 60 * 1000,
   });
   // Handle logout
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
+      removeToken()
       queryClient.invalidateQueries({ queryKey: ["userProfile"] });
-      window.location.href = "/auth/google";
+      window.location.href = "/auth/login";
     },
   });
 
