@@ -31,11 +31,14 @@ export function Header() {
     queryKey: ["userProfile"],
     queryFn: async () => {
       const data = await getProfile();
+      console.log('data is ', data);
+      
       if (data.csrfToken) {
         setCsrfToken(data.csrfToken);
       }
       return data.user;
     },
+    retry: true
     // staleTime: 15 * 60 * 1000,
   });
   // Handle logout
@@ -43,7 +46,7 @@ export function Header() {
     mutationFn: logout,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userProfile"] });
-      window.location.href = "/auth";
+      window.location.href = "/auth/google";
     },
   });
 

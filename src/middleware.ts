@@ -16,9 +16,9 @@ export function middleware(request: NextRequest) {
   //   return NextResponse.redirect(loginUrl);
   // }
 
-  if (token && pathname.startsWith('/auth/google')) {
-    return NextResponse.redirect(dashboardUrl)
-  }
+  // if (token && pathname.startsWith('/auth/google')) {
+  //   return NextResponse.redirect(dashboardUrl)
+  // }
 
   // 4. Otherwise, continue with the request
   return NextResponse.next();
