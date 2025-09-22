@@ -19,6 +19,8 @@ import {
 import Image from 'next/image';
 import logo from '@/public/logo.png'; // Assuming you have a logo in your public folder
 import { useState } from 'react';
+import { AxiosError } from 'axios';
+
 
 // 1. Define the Zod schema for login validation
 const loginSchema = z.object({
@@ -63,7 +65,16 @@ export default function LoginPage() {
       setToken(token);
       router.push('/dashboard');
     } catch (err: unknown) {
-      setServerError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      // --- THIS IS THE FIX ---
+      let errorMessage = 'An unexpected error occurred. Please try again.';
+      
+      // 1. Check if the error is an AxiosError
+      if (err instanceof AxiosError) {
+        // 2. If it is, we can now safely access the response property
+        errorMessage = err.response?.data?.message || 'Login failed. Please check your credentials.';
+      }
+      
+      setServerError(errorMessage);
     }
   };
 
