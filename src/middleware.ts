@@ -12,11 +12,11 @@ export function middleware(request: NextRequest) {
 
   // 2. If the user is trying to access the dashboard without a token,
   //    redirect them to the login page.
-  if (!token && pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(loginUrl);
-  }
+  // if (!token && pathname.startsWith('/dashboard')) {
+  //   return NextResponse.redirect(loginUrl);
+  // }
 
-  if (token && pathname.startsWith('/auth')) {
+  if (token && pathname.startsWith('/auth/google')) {
     return NextResponse.redirect(dashboardUrl)
   }
 
@@ -26,5 +26,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ['/dashboard/:path*', '/auth'],
+  matcher: ['/dashboard/:path*', '/auth/google'],
 };
