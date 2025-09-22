@@ -62,7 +62,7 @@ export default function LoginPage() {
       
       setToken(token);
       router.push('/dashboard');
-    } catch (err: any) {
+    } catch (err: string) {
       setServerError(err.response?.data?.message || 'Login failed. Please check your credentials.');
     }
   };
