@@ -46,10 +46,7 @@ let csrfToken: string | null = null;
  * @param token The CSRF token string.
  */
 export const setCsrfToken = (token: string) => {
-
     csrfToken = token;
-    console.log('csrf token ', token);
-    
 };
 
 api.interceptors.request.use(config => {

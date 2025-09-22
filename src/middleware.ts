@@ -5,7 +5,6 @@ import { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   // 1. Get the auth token from the request cookies
   const token = request.cookies.get('auth_token');
-  console.log('token in middleware ', token);
   
   const { pathname } = request.nextUrl;
   const loginUrl = new URL('/auth/google', request.url);
