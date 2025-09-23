@@ -51,8 +51,7 @@ export default function DashboardPage() {
 
       return {
         _id: contract._id,
-        propertyNumber: contract.property_id.number,
-        clientName: contract.client_id.fullName,
+        propertyNumber: `${contract.property_id.number} - ${contract.property_id.building}`,
         startDate: contract.start_date,
         endDate: contract.end_date,
         nextDueDate: nextDuePayment?.due_date || null,
@@ -84,24 +83,24 @@ export default function DashboardPage() {
   );
 
   const columns = [
-    { id: "propertyNumber" as const, label: "Property" },
-    { id: "clientName" as const, label: "Client" },
+    { id: "propertyNumber" as const, label: "العقار" },
     {
       id: "endDate" as const,
-      label: "Contract End",
+      label: "نهاية العقد",
       render: (row: DashboardRow) =>
         format(new Date(row.endDate), "dd MMM yyyy"),
     },
     {
       id: "nextDueDate" as const,
-      label: "Next Due Date",
+      label: "تاريخ الايجار القادم",
       render: (row: DashboardRow) => {
         if (!row.nextDueDate) return "N/A";
         const isOverdue = isPast(new Date(row.nextDueDate));
         return (
           <Typography
-            color={isOverdue ? "error.main" : "text.primary"}
-            sx={{ fontWeight: isOverdue ? "bold" : "normal" }}
+            color={isOverdue ? "error.main" : "green"}
+            sx={{ fontWeight:  "bold"  }}
+            variant="body1"
           >
             {format(new Date(row.nextDueDate), "dd MMM yyyy")}
           </Typography>
@@ -110,23 +109,23 @@ export default function DashboardPage() {
     },
     {
       id: "nextDueAmount" as const,
-      label: "Next Due Amount",
+      label: "قيمة الايجار القادم",
       render: (row: DashboardRow) =>
         row.nextDueAmount ? `EGP ${row.nextDueAmount.toLocaleString()}` : "N/A",
     },
     {
       id: "totalRevenue" as const,
-      label: "Total Value",
+      label: "اجمالي قيمة العقد",
       render: (row: DashboardRow) => `EGP ${row.totalRevenue.toLocaleString()}`,
     },
     {
       id: "totalPaid" as const,
-      label: "Total Paid",
+      label: "ما تم تحصيله",
       render: (row: DashboardRow) => `EGP ${row.totalPaid.toLocaleString()}`,
     },
     {
       id: "totalDue" as const,
-      label: "Total Due",
+      label: "اجمالي المتبقي",
       render: (row: DashboardRow) => `EGP ${row.totalDue.toLocaleString()}`,
     },
   ];
@@ -171,14 +170,14 @@ export default function DashboardPage() {
         </Typography>
         <Grid container spacing={2} sx={{ textAlign: "center" }}>
           <Grid size={{ xs: 12, sm: 4 }}>
-            <Typography variant="body1">Total Contract Value:</Typography>
+            <Typography variant="body1">اجمالي العقود السارية</Typography>
             <Typography variant="h6">
               EGP {grandTotals.totalRevenue.toLocaleString()}
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 4 }}>
             <Typography variant="body1" color="success.main">
-              Total Paid:
+              اجمالي ما تم تحصيله
             </Typography>
             <Typography variant="h6" color="success.main">
               EGP {grandTotals.totalPaid.toLocaleString()}
@@ -186,7 +185,7 @@ export default function DashboardPage() {
           </Grid>
           <Grid size={{ xs: 12, sm: 4 }}>
             <Typography variant="body1" color="error.main">
-              Total Due:
+              اجمالي المتبقي
             </Typography>
             <Typography variant="h6" color="error.main">
               EGP {grandTotals.totalDue.toLocaleString()}

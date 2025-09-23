@@ -26,7 +26,6 @@ export interface FinancialSummaryItem {
 export interface DashboardRow {
   _id: string;
   propertyNumber: string;
-  clientName: string;
   startDate: string;
   endDate: string;
   nextDueDate: string | null;
