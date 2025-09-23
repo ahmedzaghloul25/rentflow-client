@@ -17,11 +17,9 @@ export default function DashboardPage() {
   const { data: financialData, isLoading: isLoadingFinancials } =
     useFinancialSummary();
 
-  // State for pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  // This powerful useMemo hook processes and merges data from both APIs into a single, clean structure for our table.
   const { mergedData, grandTotals } = useMemo(() => {
     if (!summaryData || !financialData) {
       return {
@@ -71,7 +69,6 @@ export default function DashboardPage() {
     };
   }, [summaryData, financialData]);
 
-  // Event handlers for pagination
   const handlePageChange = (event: unknown, newPage: number) =>
     setPage(newPage);
   const handleRowsPerPageChange = (
@@ -86,7 +83,6 @@ export default function DashboardPage() {
     page * rowsPerPage + rowsPerPage
   );
 
-  // Strictly typed column definition for our unified table
   const columns = [
     { id: "propertyNumber" as const, label: "Property" },
     { id: "clientName" as const, label: "Client" },

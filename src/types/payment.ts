@@ -8,7 +8,7 @@ export enum PaymentMethodEnum {
 
 export interface Payment {
     _id: string;
-    contract_id: Contract; // Populated from backend
+    contract_id: Contract;
     due_date: string;
     due_amount: number;
     amount_paid?: number;
@@ -18,7 +18,6 @@ export interface Payment {
     payment_method?: PaymentMethodEnum;
 }
 
-// For the "Mark as Paid" form
 export interface MarkPaymentPaidData {
     amount_paid: number;
     payment_method: PaymentMethodEnum;
@@ -30,4 +29,15 @@ export interface GetContractPayments {
   is_cancelled?: boolean
   page?:number
   limit?:number
+}
+
+export interface PaymentsResponse {
+  message: string;
+  pagination: {
+    totalRecords: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+  payments: Payment[];
 }

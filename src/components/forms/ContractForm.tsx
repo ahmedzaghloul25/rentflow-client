@@ -27,7 +27,6 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { Property } from "@/src/types/property";
 import { Client } from "@/src/types/client";
 
-// ▼▼▼ FIX 1: Corrected Zod Schema ▼▼▼
 const contractSchema = z
   .object({
     property_id: z.string(),
@@ -81,7 +80,6 @@ export function ContractForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
-        {/* ▼▼▼ FIX 2: Correct Grid Syntax (item prsize={{md:6, xs: 12}}▼▼ */}
         <Grid size={{ md: 6, xs: 12 }}>
           <FormControl fullWidth error={!!errors.property_id}>
             <Controller
@@ -115,7 +113,6 @@ export function ContractForm() {
               control={control}
               render={({ field }) => (
                 <Autocomplete
-                  // ▼▼▼ FIX 3: Corrected data source for clients ▼▼▼
                   options={clientsData?.clients || []}
                   getOptionLabel={(option: Client) => option.fullName || ""}
                   onChange={(_, newValue) =>
@@ -166,7 +163,6 @@ export function ContractForm() {
             name="initial_rent"
             control={control}
             render={({ field }) => (
-              // ▼▼▼ FIX 4: Added error props to all TextFields ▼▼▼
               <TextField
                 {...field}
                 label="Initial Rent"

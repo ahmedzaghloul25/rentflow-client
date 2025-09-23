@@ -1,4 +1,4 @@
-import { EgyptianCity, PropertyType } from "@/src/lib/constants"; // We'll create this next
+import { EgyptianCity, PropertyType } from "@/src/lib/constants";
 
 export interface Property {
   _id: string;
@@ -11,5 +11,4 @@ export interface Property {
   user_id: string;
 }
 
-// This will be the shape of the form data
 export type NewPropertyData = Omit<Property, '_id' | 'user_id'>;

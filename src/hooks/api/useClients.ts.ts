@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 
 export const useClients = ({ page, limit }: { page: number, limit: number }) => {
   return useQuery({
-    // Add page and limit to the queryKey to make it unique
     queryKey: ['clients', page, limit],
     queryFn: () => getClients({ page, limit }),
   });
@@ -23,8 +22,7 @@ export const useAddClient = () => {
     },
     onError: (axiosError: AxiosError) => {
       const errorObject = axiosError.response?.data as GeneralError
-      console.error(axiosError)
-      toast.error(`Error: ${errorObject.message}`); // Error toast
+      toast.error(`Error: ${errorObject.message}`);
     }
   });
 };
@@ -39,8 +37,7 @@ export const useDeleteClient = () => {
     },
     onError: (axiosError: AxiosError) => {
       const errorObject = axiosError.response?.data as GeneralError
-      console.error(axiosError)
-      toast.error(`Error: ${errorObject.message}`); // Error toast
+      toast.error(`Error: ${errorObject.message}`);
     }
   });
 };

@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 export const ThemeContext = createContext<ThemeContextType>({
   mode: 'light',
-  toggleColorMode: () => {}, // Default empty function
+  toggleColorMode: () => {},
 });
 
 export const useThemeContext = () => {

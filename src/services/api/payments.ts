@@ -1,17 +1,5 @@
 import api from '@/src/lib/api';
-import { Payment, MarkPaymentPaidData, GetContractPayments } from '@/src/types/payment';
-
-interface PaymentsResponse {
-  message: string;
-  pagination: {
-    totalRecords: number;
-    page: number;
-    limit: number;
-    totalPages: number;
-  };
-  payments: Payment[];
-}
-
+import { MarkPaymentPaidData, GetContractPayments, PaymentsResponse } from '@/src/types/payment';
 
 
 export const getPaymentsForContract = async ({ contractId, page, limit, filters }: { contractId: string, page: number, limit: number, filters: GetContractPayments }): Promise<PaymentsResponse> => {

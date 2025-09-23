@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { useContractPayments } from "@/src/hooks/api/usePayments";
-import { useContract } from "@/src/hooks/api/useContracts"; // We need to create this hook
+import { useContract } from "@/src/hooks/api/useContracts";
 import { Payment } from "@/src/types/payment";
 import { DataTable } from "@/src/components/common/DataTable";
 
@@ -11,7 +11,6 @@ import {
   Box,
   Paper,
   Typography,
-  Grid,
   CircularProgress,
   Alert,
   Chip,
@@ -29,14 +28,12 @@ export default function ContractDetailPage() {
   const params = useParams();
   const contractId = params.id as string;
 
-  // State for payments table
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [filters, setFilters] = useState<{ is_paid?: boolean }>({
     is_paid: false,
   });
 
-  // Dialog State
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<Payment | null>(null);
 
@@ -57,7 +54,6 @@ export default function ContractDetailPage() {
 
   const payments = paymentsData?.payments || [];
   const totalRecords = paymentsData?.pagination?.totalRecords || 0;
-  console.log(contractData);
 
   const paymentColumns: {
     id: keyof Payment | "actions";
@@ -123,7 +119,6 @@ export default function ContractDetailPage() {
       <Typography variant="h4" gutterBottom>
         CONTRACT DETAILS
       </Typography>
-      {/* Add a component to display contract summary here */}
 
       <Paper sx={{ boxShadow: 3, borderRadius: 3, paddingX:2, paddingY:3 }}>
         <Box
@@ -170,7 +165,7 @@ export default function ContractDetailPage() {
           data={payments}
           columns={paymentColumns}
           isLoading={isLoadingPayments}
-          error={null} // Handle error state
+          error={null}
           totalRecords={totalRecords}
           page={page}
           onPageChange={(e, newPage) => setPage(newPage)}

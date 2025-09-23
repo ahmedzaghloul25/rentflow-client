@@ -29,7 +29,6 @@ interface Props {
   existingProperty?: Property;
 }
 
-// Zod schema for client-side validation
 const propertySchema = z.object({
   number: z.string().min(1, "Number is required").max(10),
   type: z.enum(PropertyType, {
@@ -71,7 +70,7 @@ export function PropertyForm({ existingProperty }: Props) {
   useEffect(() => {
     if (selectedCity) {
       setDistricts(cityDistrictMap.get(selectedCity) || []);
-      setValue("district", ""); // Reset district when city changes
+      setValue("district", "");
     } else {
       setDistricts([]);
     }

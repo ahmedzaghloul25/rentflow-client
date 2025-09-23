@@ -1,4 +1,4 @@
-// src/lib/theme.ts
+
 import { createTheme } from '@mui/material/styles';
 import { Roboto } from 'next/font/google';
 
@@ -12,48 +12,46 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#3f51b5', // A calm, professional blue
+      main: '#3f51b5',
     },
     secondary: {
       main: '#f50057',
     },
     background: {
-      default: '#f7f9fc', // Light gray background
-      paper: '#ffffff',   // White for cards, modals, etc.
+      default: '#f7f9fc',
+      paper: '#ffffff',
     },
     text: {
-      primary: '#212121',   // Dark gray for primary text
-      secondary: '#757575', // Lighter gray for secondary text
+      primary: '#212121',
+      secondary: '#757575',
     },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
     h1: { fontSize: '2.5rem', fontWeight: 500 },
     h2: { fontSize: '2rem', fontWeight: 500 },
-    // ... other typography settings
   },
   components: {
-    // Set default props for components
     MuiButton: {
       defaultProps: {
-        disableElevation: true, // Flatter buttons for a modern look
+        disableElevation: true,
         variant: 'contained',
       },
       styleOverrides: {
         root: {
-          textTransform: 'none', // More readable button text
+          textTransform: 'none',
           borderRadius: 8,
         },
       },
     },
     MuiCard: {
       defaultProps: {
-        elevation: 0, // No shadow by default
+        elevation: 0, 
       },
       styleOverrides: {
         root: {
           borderRadius: 12,
-          border: '1px solid #e0e0e0', // Subtle border instead of shadow
+          border: '1px solid #e0e0e0',
         },
       },
     },

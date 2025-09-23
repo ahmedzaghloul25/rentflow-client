@@ -2,27 +2,19 @@ import { Contract } from "./contract";
 import { Payment } from "./payment";
 import { Property } from "./property";
 
-// --- API Response Types ---
 
-// Represents an item from the GET /dashboard/summary 'contracts' array
-// export interface PropertySummaryItem extends Contract {
-// }
-
-// Represents an item from the GET /dashboard/summary 'duePayments' array
 export interface DuePaymentInfo {
-  _id: string; // Contract ID
+  _id: string;
   duePayment: Payment | null;
 }
 
-// The complete shape of the GET /dashboard/summary response
 export interface PropertySummaryResponse {
   contracts: Contract[];
   duePayments: DuePaymentInfo[];
 }
 
-// Represents an item from the GET /dashboard/finance response array
 export interface FinancialSummaryItem {
-  _id: string; // Contract ID
+  _id: string;
   totalRevenue: number;
   totalReceived: number;
   totalDue: number;
@@ -30,11 +22,9 @@ export interface FinancialSummaryItem {
   property: Property;
 }
 
-// --- Processed Data Type for the UI ---
 
-// This is the final, combined shape of a single row in our dashboard table.
 export interface DashboardRow {
-  _id: string; // Contract ID
+  _id: string;
   propertyNumber: string;
   clientName: string;
   startDate: string;

@@ -19,21 +19,19 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   useProperties,
   useDeleteProperty,
-} from "@/src/hooks/api/useProperties"; // Import delete hook
+} from "@/src/hooks/api/useProperties";
 import { Property } from "@/src/types/property";
 
 export default function PropertiesPage() {
   const deletePropertyMutation = useDeleteProperty();
 
-  // State for the action menu on each row
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedProperty, setSelectedProperty] = useState<null | Property>(
     null
   );
-  const [page, setPage] = useState(0); // MUI TablePagination is 0-indexed
+  const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  // State for the confirmation dialog
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const { data, isLoading, error } = useProperties({
@@ -49,10 +47,9 @@ export default function PropertiesPage() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0); // Reset to the first page when rows per page changes
+    setPage(0);
   };
 
-  // Extract properties and total count from the API response
   const properties = data?.properties || [];
   const totalRecords = data?.pagination?.totalRecords || 0;
 
@@ -66,7 +63,6 @@ export default function PropertiesPage() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    // setSelectedProperty(null);
   };
 
   const handleDeleteClick = () => {
@@ -89,7 +85,7 @@ export default function PropertiesPage() {
     { id: "number", label: "Number" },
     { id: "type", label: "Type" },
     {
-      id: "city", // 'city' is a valid keyof Property
+      id: "city",
       label: "City",
       render: (property: Property) => `${property.city}, ${property.district}`,
     },
@@ -102,7 +98,7 @@ export default function PropertiesPage() {
       label: "Notes"
     },
     {
-      id: "actions", // 'actions' is the other valid type
+      id: "actions",
       label: "Actions",
       render: (property: Property) => (
         <IconButton onClick={(e) => handleMenuClick(e, property)}>
@@ -126,8 +122,8 @@ export default function PropertiesPage() {
           PROPERTIES
         </Typography>
         <Button
-          component={NextLink} // Use NextLink for client-side navigation
-          href="/dashboard/properties/create" // Link to the new page
+          component={NextLink}
+          href="/dashboard/properties/create"
           variant="contained"
           startIcon={<AddIcon />}
           sx={{boxShadow:3, borderRadius:3}}
@@ -141,7 +137,6 @@ export default function PropertiesPage() {
         columns={columns}
         isLoading={isLoading}
         error={error}
-        // Pass pagination state and handlers to the DataTable
         totalRecords={totalRecords}
         page={page}
         onPageChange={handlePageChange}
@@ -149,7 +144,6 @@ export default function PropertiesPage() {
         onRowsPerPageChange={handleRowsPerPageChange}
       />
 
-      {/* Action Menu */}
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -169,7 +163,6 @@ export default function PropertiesPage() {
         </MenuItem>
       </Menu>
 
-      {/* Confirmation Dialog */}
       <ConfirmDialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}

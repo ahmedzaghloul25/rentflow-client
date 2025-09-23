@@ -10,10 +10,10 @@ export enum PaymentInterval {
 
 export interface Contract {
     _id: string;
-    property_id: Property; // Will be populated from the backend
-    client_id: Client;     // Will be populated from the backend
+    property_id: Property;
+    client_id: Client;
     user_id: string;
-    start_date: string; // Dates will be strings
+    start_date: string;
     end_date: string;
     initial_rent: number;
     payment_interval: PaymentInterval;
@@ -23,9 +23,8 @@ export interface Contract {
     actual_end_date?: string;
 }
 
-// Shape of the form data for creating a new contract
 export interface NewContractData {
-    property_id: string; // We'll submit IDs
+    property_id: string;
     client_id: string;
     start_date: Date;
     end_date: Date;

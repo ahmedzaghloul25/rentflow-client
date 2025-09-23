@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getContracts, addContract, terminateContract, getContractById } from '@/src/services/api/contracts';
 import { NewContractData } from '@/src/types/contract';
-import toast from 'react-hot-toast'; // Import toast
+import toast from 'react-hot-toast';
 import { AxiosError } from 'axios';
 import { GeneralError } from '@/src/types/common';
 
@@ -33,8 +33,7 @@ export const useAddContract = () => {
         },
         onError: (axiosError: AxiosError) => {
             const errorObject = axiosError.response?.data as GeneralError
-            console.error(axiosError)
-            toast.error(`Error: ${errorObject.message}`); // Error toast
+            toast.error(`Error: ${errorObject.message}`);
         }
     });
 };
@@ -51,8 +50,7 @@ export const useTerminateContract = () => {
         },
         onError(axiosError: AxiosError) {
             const errorObject = axiosError.response?.data as GeneralError
-            console.error(axiosError)
-            toast.error(`Error: ${errorObject.message}`); // Error toast
+            toast.error(`Error: ${errorObject.message}`);
         },
     });
 }

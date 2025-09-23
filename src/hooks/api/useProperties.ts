@@ -7,13 +7,11 @@ import toast from 'react-hot-toast';
 
 export const useProperties = ({ page, limit }: { page: number, limit: number }) => {
   return useQuery({
-    // Add page and limit to the queryKey to make it unique
     queryKey: ['properties', page, limit],
     queryFn: () => getProperties({ page, limit }),
   });
 };
 
-// ▼▼▼ ADD THIS HOOK ▼▼▼
 export const useAddProperty = () => {
   const queryClient = useQueryClient();
 
@@ -25,8 +23,7 @@ export const useAddProperty = () => {
     },
     onError: (axiosError: AxiosError) => {
       const errorObject = axiosError.response?.data as GeneralError
-      console.error(axiosError)
-      toast.error(`Error: ${errorObject.message}`); // Error toast
+      toast.error(`Error: ${errorObject.message}`);
     }
   });
 };
@@ -42,8 +39,7 @@ export const useDeleteProperty = () => {
     },
     onError: (axiosError: AxiosError) => {
       const errorObject = axiosError.response?.data as GeneralError
-      console.error(axiosError)
-      toast.error(`Error: ${errorObject.message}`); // Error toast
+      toast.error(`Error: ${errorObject.message}`);
     }
   });
 };

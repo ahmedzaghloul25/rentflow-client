@@ -30,8 +30,8 @@ import {
 } from "@/src/hooks/api/useContracts";
 import { Contract } from "@/src/types/contract";
 
-import { useProperties } from "@/src/hooks/api/useProperties"; // Import
-import { useClients } from "@/src/hooks/api/useClients.ts"; // Import
+import { useProperties } from "@/src/hooks/api/useProperties";
+import { useClients } from "@/src/hooks/api/useClients.ts";
 import { ConfirmDialog } from "@/src/components/common/ConfirmDialog";
 
 export default function ContractsPage() {
@@ -40,7 +40,6 @@ export default function ContractsPage() {
   const handlePageChange = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
-  // Fetch properties and clients to check if they exist
   const { data: propertiesData } = useProperties({ page: 0, limit: 1 });
   const { data: clientsData } = useClients({ page: 0, limit: 1 });
   const terminateContractMutation = useTerminateContract();
@@ -74,8 +73,7 @@ export default function ContractsPage() {
   };
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setShowActiveOnly(event.target.checked);
-    console.log(event.target.checked);
-    setPage(0); // Reset to the first page when the filter changes
+    setPage(0);
   };
 
   const handleConfirmTerminate = () => {
@@ -92,7 +90,7 @@ export default function ContractsPage() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0); // Reset to the first page when rows per page changes
+    setPage(0);
   };
 
   const contracts = data?.contracts || [];

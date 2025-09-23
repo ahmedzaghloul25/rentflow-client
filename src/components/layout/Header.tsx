@@ -8,13 +8,13 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import { Divider } from "@mui/material";
 import { useThemeContext } from "@/src/context/ThemeContext";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { removeToken } from "@/src/lib/token";
@@ -26,22 +26,17 @@ export function Header() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  // Fetch user profile
   const { data: user, isLoading } = useQuery({
     queryKey: ["userProfile"],
     queryFn: async () => {
       const data = await getProfile();
-      console.log('data is ', data);
       return data.user;
     },
-    retry: false,
-    // staleTime: 15 * 60 * 1000,
   });
-  // Handle logout
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      removeToken()
+      removeToken();
       queryClient.invalidateQueries({ queryKey: ["userProfile"] });
       window.location.href = "/auth/login";
     },
@@ -83,7 +78,7 @@ export function Header() {
           user && (
             <div>
               <IconButton onClick={handleMenu} size="small" sx={{ ml: 2 }}>
-                <Avatar alt={user.fullName} src={user.picture} />
+                <AccountCircleIcon />
               </IconButton>
               <Menu
                 anchorEl={anchorEl}

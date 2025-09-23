@@ -9,7 +9,7 @@ export const useContractPayments = ({ contractId, page, limit, filters }: { cont
     return useQuery({
         queryKey: ['contractPayments', contractId, page, limit, filters],
         queryFn: () => getPaymentsForContract({ contractId, page, limit, filters }),
-        enabled: !!contractId, // Only run query if contractId is available
+        enabled: !!contractId,
     });
 };
 
@@ -23,7 +23,6 @@ export const useMarkPaymentPaid = (contractId: string) => {
         },
         onError: (axiosError: AxiosError) => {
             const error = axiosError.response?.data as GeneralError
-            console.log(axiosError)
             toast.error(`Error: ${error.message}`);
         }
     });

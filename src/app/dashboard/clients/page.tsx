@@ -27,10 +27,9 @@ export default function ClientsPage() {
   const [selectedClient, setSelectedClient] = useState<null | Client>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const [page, setPage] = useState(0); // MUI TablePagination is 0-indexed
+  const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  // We'll update the hook to accept pagination state
   const { data, isLoading, error } = useClients({ page, limit: rowsPerPage });
 
   const handlePageChange = (event: unknown, newPage: number) => {
@@ -41,10 +40,9 @@ export default function ClientsPage() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0); // Reset to the first page when rows per page changes
+    setPage(0);
   };
 
-  // Extract properties and total count from the API response
   const clients = data?.clients || [];
   const totalRecords = data?.pagination?.totalRecords || 0;
 
@@ -58,7 +56,6 @@ export default function ClientsPage() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    // setSelectedClient(null);
   };
 
   const handleDeleteClick = () => {
@@ -121,7 +118,6 @@ export default function ClientsPage() {
         columns={columns}
         isLoading={isLoading}
         error={error}
-        // Pass pagination state and handlers to the DataTable
         totalRecords={totalRecords}
         page={page}
         onPageChange={handlePageChange}
