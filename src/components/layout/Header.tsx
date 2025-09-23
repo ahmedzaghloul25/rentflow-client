@@ -38,7 +38,7 @@ export function Header() {
     onSuccess: () => {
       removeToken();
       queryClient.invalidateQueries({ queryKey: ["userProfile"] });
-      window.location.href = "/auth/login";
+      window.location.href = "/";
     },
   });
 
