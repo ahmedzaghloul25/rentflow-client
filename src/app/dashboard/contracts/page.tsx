@@ -122,6 +122,16 @@ export default function ContractsPage() {
       render: (c: Contract) => format(new Date(c.end_date), "dd MMM yyyy"),
     },
     {
+      id: "initial_rent",
+      label: "Rent",
+      render: (c: Contract) => `EGP ${c.initial_rent}`
+    },
+    {
+      id: "security_deposit",
+      label: "Security Deposit",
+      render: (c: Contract) => `EGP ${c.security_deposit}`
+    },
+    {
       id: "is_terminated",
       label: "Status",
       render: (c: Contract) => (
