@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import NextLink from "next/link";
 import {
   Box,
-  Button,
   Typography,
   IconButton,
   Menu,
@@ -14,6 +12,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { LinkButton } from "@/src/components/common/LinkButton";
 
 import { DataTable } from "@/src/components/common/DataTable";
 import { ConfirmDialog } from "@/src/components/common/ConfirmDialog";
@@ -102,7 +101,7 @@ export default function ClientsPage() {
         <Typography variant="h4" component="h1">
           CLIENTS
         </Typography>
-        <Button
+        {/* <Button
           component={NextLink}
           href="/dashboard/clients/create"
           variant="contained"
@@ -111,6 +110,13 @@ export default function ClientsPage() {
         >
           Add Client
         </Button>
+        */}
+        <LinkButton
+          href="/dashboard/clients/create"
+          variant="contained"
+          startIcon={<AddIcon />}
+          sx={{ boxShadow: 3, borderRadius: 3 }}
+        />
       </Box>
 
       <DataTable
