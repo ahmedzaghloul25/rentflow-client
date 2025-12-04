@@ -1,4 +1,4 @@
-'use client';
+'use server';
 
 import { ClientForm } from '@/src/components/forms/ClientForm';
 import { Box, Paper, Typography } from '@mui/material';
